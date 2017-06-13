@@ -12,28 +12,19 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script>
     $(document).ready(function () {
-        var vtoken = $("#token").val();
-
-        if (vtoken == '') {
-          alert("");
-        }else {
-          $.post("jquery_post.php", //Required URL of the page on server
-            { // Data Sending With Request To Server
-              token: vtoken
-            },
-            function (response, status) { // Required Callback Function
-              alert("*----Received Data----*\n\nResponse : " + response + "\n\nStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
-              $("#form")[0].reset();
-            });
-        }
-
+      $("input").keyup(function () {
+        var txt = $("input").val();
+        $.post("https://dashboard-staging.hrofficelabs.com", { suggest: txt }, function (result) {
+          $("span").html(result);
+        });
+      });
     });
-
   </script>
 
 </head>
 
 <body>
+  <span></span>
   {{content-for "body"}}
 
   <script src="{{rootURL}}assets/vendor.js"></script>
