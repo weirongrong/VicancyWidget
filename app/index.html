@@ -12,20 +12,20 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script>
     $(document).ready(function () {
-        $.post("https://dashboard-staging.hrofficelabs.com",
+      $.post("https://dashboard-staging.hrofficelabs.com",
         {
-       
+
         },
-        function(data,status){
-            alert("Data: " + data + "\nStatus: " + status);
+        function (data, status) {
+          alert("Data: " + data + "\nStatus: " + status);
+        });
     });
   </script>
 
 </head>
 
 <body>
-  <span></span>
-  {{content-for "body"}}
+  <span></span> {{content-for "body"}}
 
   <script src="{{rootURL}}assets/vendor.js"></script>
   <script src="{{rootURL}}assets/vicancy-widget.js"></script>
