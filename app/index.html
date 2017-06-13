@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script>
     $(document).ready(function () {
-      $("input").keyup(function () {
-        var txt = $("input").val();
-        $.post("https://dashboard-staging.hrofficelabs.com", { suggest: txt }, function (result) {
-          $("span").html(result);
-        });
-      });
+        $.post("https://dashboard-staging.hrofficelabs.com",
+        {
+       
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
     });
   </script>
 
