@@ -12,13 +12,15 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script>
     $(document).ready(function () {
-      $.post("https://dashboard-staging.hrofficelabs.com",
-        {
+      $("button").click(function () {
+        $.post("https://dashboard-staging.hrofficelabs.com",
+          {
 
-        },
-        function (data, status) {
-          alert("Data: " + data + "\nStatus: " + status);
-        });
+          },
+          function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+          });
+      });
     });
   </script>
 
@@ -29,7 +31,7 @@
 
   <script src="{{rootURL}}assets/vendor.js"></script>
   <script src="{{rootURL}}assets/vicancy-widget.js"></script>
-
+  <button>Send an HTTP POST request to a page and get the result back</button>
   {{content-for "body-footer"}}
 </body>
 
