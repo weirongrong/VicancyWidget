@@ -14,20 +14,21 @@
   <script>
     function loadDoc() {
       var xhttp = new XMLHttpRequest();
-      xhttp.open("OPTIONS", "https://dashboard-staging.hrofficelabs.com", true);
+      xhttp.open("POST", "https://dashboard-staging.hrofficelabs.com", true);
       xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhttp.send();
+      document.getElementById("demo").innerHTML = xhttp.responseText;
     }
   </script>
 
 </head>
 
 <body>
-  <span></span> {{content-for "body"}}
-
+   {{content-for "body"}}
+   
   <script src="{{rootURL}}assets/vendor.js"></script>
   <script src="{{rootURL}}assets/vicancy-widget.js"></script>
-
+  <p id="demo"></p>
   {{content-for "body-footer"}}
 </body>
 
