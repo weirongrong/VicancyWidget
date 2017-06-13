@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>VicancyWidget</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {{content-for "head"}}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>VicancyWidget</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> {{content-for "head"}}
 
-    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css">
+  <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+  <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
+  <script>
+    $(document).ready(function () {
+        var vtoken = $("#token").val();
 
-    {{content-for "head-footer"}}
-  </head>
-  <body>
-    {{content-for "body"}}
+        if (vtoken == '') {
+          alert("");
+        }else {
+          $.post("jquery_post.php", //Required URL of the page on server
+            { // Data Sending With Request To Server
+              token: vtoken
+            },
+            function (response, status) { // Required Callback Function
+              alert("*----Received Data----*\n\nResponse : " + response + "\n\nStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
+              $("#form")[0].reset();
+            });
+        }
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/vicancy-widget.js"></script>
+    });
 
-    {{content-for "body-footer"}}
-  </body>
+  </script>
+
+</head>
+
+<body>
+  {{content-for "body"}}
+
+  <script src="{{rootURL}}assets/vendor.js"></script>
+  <script src="{{rootURL}}assets/vicancy-widget.js"></script>
+
+  {{content-for "body-footer"}}
+</body>
+
 </html>
