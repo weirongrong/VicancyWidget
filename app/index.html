@@ -15,6 +15,7 @@
     function loadDoc() {
       var xhttp = new XMLHttpRequest();
       xhttp.open("POST", "https://dashboard-staging.hrofficelabs.com", true);
+      xhttp.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
       xhttp.send();
     }
   </script>
