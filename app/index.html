@@ -12,17 +12,11 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    $(document).ready(function () {
-
-      $.post("https://dashboard-staging.hrofficelabs.com",
-        {
-
-        },
-        function (data, status) {
-          alert("Data: " + data + "\nStatus: " + status);
-        });
-
-    });
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "https://dashboard-staging.hrofficelabs.com", true);
+      xhttp.send();
+    }
   </script>
 
 </head>
