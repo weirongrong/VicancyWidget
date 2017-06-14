@@ -12,20 +12,41 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    // function loadDoc() {
-    //   var xhttp = new XMLHttpRequest();
-    //   xhttp.open("POST", "https://dashboard-staging.hrofficelabs.com", true);
-    //   xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //   xhttp.send();
-    //   console.log(xhttp.getResponseHeader("Content-Type"));
-    // }
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST", "https://dashboard-staging.hrofficelabs.com", true);
+      xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhttp.send();
+      console.log(xhttp.getResponseHeader("Content-Type"));
+    }
+    App = Ember.Application.create({});
+
+    App.Token = Ember.Object.extend({
+      token: ""
+    });
+
+    App.IndexRoute = Ember.Route.extend({
+      model: function () {
+        return App.Token.create()
+      },
+      setupController: function (controller, model) {
+        controller.set("model", model);
+      }
+    });
+
+    App.IndexController = Ember.ObjectController.extend({
+      submitAction: function () {
+        // here you could perform your actions like persisting to the server or so
+        alert("now we can submit the model:" + this.get("model"));
+      }
+    });
   </script>
 
 </head>
 
 <body>
-   {{content-for "body"}}
-   
+  {{content-for "body"}}
+
   <script src="{{rootURL}}assets/vendor.js"></script>
   <script src="{{rootURL}}assets/vicancy-widget.js"></script>
   {{content-for "body-footer"}}
