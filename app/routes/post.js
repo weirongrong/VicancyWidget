@@ -1,13 +1,7 @@
 import Ember from 'ember';
+import AjaxService from 'ember-ajax/services/ajax';
 
 export default Ember.Route.extend({
-    ajax: Ember.inject.service(),
-    sendRequest() {
-        return this.get('ajax').request('https://dashboard-staging.hrofficelabs.com', {
-            method: 'POST',
-            data: {
-                foo: 'bar'
-            }
-        });
-    }
+    host: 'https://dashboard-staging.hrofficelabs.com',
+    contentType: 'application/json; charset=utf-8'
 });
