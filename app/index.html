@@ -50,7 +50,7 @@
                 baseURI = result.resource_server_base_uri;
                 alert('Success!\r\nAccess Token:\r' + accessToken + 
                     '\r\nBase URI:\r' + result)
-                document.getElementById('pageDiv').innerHTML = result.access_token;
+                document.getElementById('pageDiv').innerHTML = result;
                 return result;
               },
               'error': function (XMLHttpRequest, textStatus, errorThrown) {
