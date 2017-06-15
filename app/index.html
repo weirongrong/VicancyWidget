@@ -11,29 +11,67 @@
   <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
   <link rel="stylesheet" href="{{rootURL}}assets/vicancy-widget.css"> {{content-for "head-footer"}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    // function loadDoc() {
-    //   var xhttp = new XMLHttpRequest();
-    //   xhttp.open("POST", "https://dashboard-staging.hrofficelabs.com", true);
-    //   xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //   xhttp.send();
-    //   console.log(xhttp.getResponseHeader("Content-Type"));
-    // }
-    $.ajax({
-      method: "POST",
-      url: "https://dashboard-staging.hrofficelabs.com",
-      data: { token : "" }
-    })
-      .done(function (msg) {
-        alert("Data Saved: " + msg);
-      });
+  
+  <script type="text/JavaScript" language="JavaScript">
+//Get inContact Token
+      var accessToken = '';
+      var baseURI = '';
+ 
+      function getToken() {
+          var url_base = 
+             'https://dashboard-staging.hrofficelabs.com';
+ 
+          // The auth_token is the base64 encoded string for the API 
+          // application.
+          // var auth_token = 'AppName@VendorName:BusinessUnit';
+          // auth_token = window.btoa(auth_token);
+          var requestPayload = {
+              // Enter your inContact credentials for the 'username' and 
+              // 'password' fields.
+              // 'grant_type': 'password',
+              // 'username': 'YourUsernameHere',
+              // 'password': 'YourPasswordHere',
+              // 'scope': ''
+          }
+          $.ajax({
+              'url': url_base,
+              'type': 'POST',
+              'content-Type': 'x-www-form-urlencoded',
+              'dataType': 'json',
+              'headers': {
+                // // Use access_token previously retrieved from inContact token 
+                // // service.
+                // 'Authorization': 'basic ' + auth_token
+              },
+              'data': requestPayload,
+              'success': function (result) {
+                //Process success actions
+                accessToken = result.access_token;
+                baseURI = result.resource_server_base_uri;
+                alert('Success!\r\nAccess Token:\r' + accessToken + 
+                    '\r\nBase URI:\r' + baseURI)
+                document.getElementById('pageDiv').innerHTML = result.access_token;
+                return result;
+              },
+              'error': function (XMLHttpRequest, textStatus, errorThrown) {
+                //Process error actions
+                alert('Error: ' + errorThrown);
+                console.log(XMLHttpRequest.status + ' ' + 
+                    XMLHttpRequest.statusText);
+                return false;
+              }
+          });
+        }
+        getToken();
   </script>
 
 </head>
 
 <body>
   {{content-for "body"}}
-
+  <!-- List of Agents within a BU -->        
+     
+     <div class="outer" id="pageDiv"></div>
   <script src="{{rootURL}}assets/vendor.js"></script>
   <script src="{{rootURL}}assets/vicancy-widget.js"></script>
   {{content-for "body-footer"}}
