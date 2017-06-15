@@ -49,7 +49,7 @@
                 accessToken = result.access_token;
                 baseURI = result.resource_server_base_uri;
                 alert('Success!\r\nAccess Token:\r' + accessToken + 
-                    '\r\nBase URI:\r' + baseURI)
+                    '\r\nBase URI:\r' + result)
                 document.getElementById('pageDiv').innerHTML = result.access_token;
                 return result;
               },
